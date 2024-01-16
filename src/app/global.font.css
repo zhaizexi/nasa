@@ -1,0 +1,340 @@
+.text-h1-alt {
+  font-weight: 700;
+  letter-spacing: -1px;
+  font-size: 2.8125rem;
+  line-height: 1
+}
+
+@media (min-width: 640px) {
+  .text-h1-alt {
+      font-size:3.40625rem
+  }
+}
+
+@media (min-width: 768px) {
+  .text-h1-alt {
+      letter-spacing:-2px;
+      font-size: 4.09375rem
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-h1-alt {
+      font-size:4.5rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-h1-alt {
+      font-size:6.25rem
+  }
+}
+
+.text-h1,h1 {
+  font-weight: 500;
+  letter-spacing: -1px;
+  font-size: 2.625rem;
+  line-height: 1.15
+}
+
+@media (min-width: 640px) {
+  .text-h1,h1 {
+      font-size:2.875rem
+  }
+}
+
+@media (min-width: 768px) {
+  .text-h1,h1 {
+      font-size:3.125rem;
+      letter-spacing: -1.5px
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-h1,h1 {
+      font-size:3.375rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-h1,h1 {
+      font-size:3.625rem
+  }
+}
+
+.text-h2,h2 {
+  font-weight: 500;
+  letter-spacing: -.5px;
+  font-size: 2.25rem;
+  line-height: 1.25
+}
+
+@media (min-width: 640px) {
+  .text-h2,h2 {
+      font-size:2.375rem
+  }
+}
+
+@media (min-width: 768px) {
+  .text-h2,h2 {
+      letter-spacing:-1px;
+      font-size: 2.5rem
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-h2,h2 {
+      font-size:2.625rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-h2,h2 {
+      font-size:2.75rem
+  }
+}
+
+.text-h3,h3 {
+  font-weight: 500;
+  letter-spacing: -.5px;
+  font-size: 1.6875rem;
+  line-height: 1.25
+}
+
+@media (min-width: 640px) {
+  .text-h3,h3 {
+      font-size:1.765625rem
+  }
+}
+
+@media (min-width: 768px) {
+  .text-h3,h3 {
+      letter-spacing:-1px;
+      font-size: 1.875rem
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-h3,h3 {
+      font-size:1.953125rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-h3,h3 {
+      font-size:2.0625rem
+  }
+}
+
+.text-h4,h4 {
+  font-weight: 500;
+  letter-spacing: 0;
+  font-size: 1.375rem;
+  line-height: 1.25
+}
+
+@media (min-width: 640px) {
+  .text-h4,h4 {
+      font-size:1.453125rem
+  }
+}
+
+@media (min-width: 768px) {
+  .text-h4,h4 {
+      letter-spacing:-.5px;
+      font-size: 1.546875rem
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-h4,h4 {
+      font-size:1.609375rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-h4,h4 {
+      font-size:1.6875rem
+  }
+}
+
+.text-h5,h5 {
+  font-weight: 500;
+  letter-spacing: 0;
+  font-size: 1.25rem;
+  line-height: 1.25
+}
+
+@media (min-width: 640px) {
+  .text-h5,h5 {
+      font-size:1.3125rem
+  }
+}
+
+@media (min-width: 768px) {
+  .text-h5,h5 {
+      font-size:1.390625rem
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-h5,h5 {
+      font-size:1.453125rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-h5,h5 {
+      font-size:1.515625rem
+  }
+}
+
+.text-h6,h6 {
+  font-weight: 700;
+  letter-spacing: 0;
+  font-size: 1.125rem;
+  line-height: 1.666666667
+}
+
+@media (min-width: 640px) {
+  .text-h6,h6 {
+      font-size:1.1875rem
+  }
+}
+
+@media (min-width: 768px) {
+  .text-h6,h6 {
+      font-size:1.25rem
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-h6,h6 {
+      font-size:1.3125rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-h6,h6 {
+      font-size:1.375rem
+  }
+}
+
+.text-h1 b,.text-h1 strong,.text-h2 b,.text-h2 strong,.text-h3 b,.text-h3 strong,.text-h4 b,.text-h4 strong,.text-h5 b,.text-h5 strong,h1 b,h1 strong,h2 b,h2 strong,h3 b,h3 strong,h4 b,h4 strong,h5 b,h5 strong {
+  font-weight: inherit
+}
+
+.text-subtitle {
+  font-size: 1rem
+}
+
+.text-subtitle,.text-subtitle-sm {
+  font-family: Archivo Narrow,Metropolis,-apple-system,BlinkMacSystemFont,San Francisco,Segoe UI,Roboto,Helvetica Neue,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  text-transform: uppercase;
+  line-height: 1.25;
+  letter-spacing: 1px
+}
+
+.text-subtitle-sm {
+  font-size: .875rem
+}
+
+.text-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.666666667
+}
+
+@media (min-width: 640px) {
+  .text-body-lg {
+      font-size:1.1875rem
+  }
+}
+
+@media (min-width: 768px) {
+  .text-body-lg {
+      font-size:1.25rem
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-body-lg {
+      font-size:1.3125rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-body-lg {
+      font-size:1.375rem
+  }
+}
+
+.text-body-md {
+  font-size: 1rem;
+  line-height: 1.666666667
+}
+
+@media (min-width: 1024px) {
+  .text-body-md {
+      font-size:1.125rem
+  }
+}
+
+.text-body-sm {
+  font-size: .875rem;
+  line-height: 1.666666667
+}
+
+@media (min-width: 1024px) {
+  .text-body-sm {
+      font-size:1rem
+  }
+}
+
+.text-body-xs {
+  font-size: .875rem;
+  line-height: 1.666666667
+}
+
+.text-stats-xl {
+  font-weight: 800;
+  line-height: 1;
+  font-size: 2.125rem
+}
+
+@media (min-width: 1024px) {
+  .text-stats-xl {
+      font-size:2.4rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-stats-xl {
+      font-size:2.75rem
+  }
+}
+
+.text-stats-lg {
+  font-weight: 800;
+  line-height: 1;
+  font-size: 2.125rem
+}
+
+@media (min-width: 1024px) {
+  .text-stats-lg {
+      font-size:2.125rem
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-stats-lg {
+      font-size:2.25rem
+  }
+}
+
+.text-contrast {
+  text-shadow: 1px 1px 2px rgba(0,0,0,.7)
+}
+
+.text-contrast-none {
+  text-shadow: none
+}

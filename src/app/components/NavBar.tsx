@@ -94,7 +94,7 @@ const NavBar: React.FC = () => {
           <div className="h-28 max-w-screen-3xl mx-auto w-full group-[.is-fixed]:bg-gradient-to-b from-black/75 to-transparent">
             <Toolbar
             component={"nav"}
-            className="lg:container flex items-center justify-between mx-auto relative "
+            className="lg:container flex items-center justify-between mx-auto relative h-full "
             aria-label="Global"
           >
             <div className="flex">

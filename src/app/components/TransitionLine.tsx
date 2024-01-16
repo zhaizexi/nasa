@@ -1,15 +1,11 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useImperativeHandle, useState, memo } from "react";
 
-export default forwardRef<{play : () => void}>(function TransitionLine(props,ref) {
-  const [key,setKey] = useState(0);
-  useImperativeHandle(ref, () => {
-    return {
-      play: () => {
-        setKey(key+1);
-      },
-    }
-  })
+interface Props {
+  activeIndex: number;
+}
+
+export default memo(function TransitionLine(props:Props) {
   return (
-    <div key={key} className="h-[2px] bg-white w-full animate-slide-in"></div>
+    <div key={props.activeIndex} className="h-[2px] bg-white w-full animate-slide-in"></div>
   )
 });

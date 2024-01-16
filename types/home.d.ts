@@ -3,3 +3,8 @@ interface Site {
   title: string;
   url: string;
 }
+interface Slide {
+  title: string;
+  href: string;
+  video: string;
+}

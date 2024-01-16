@@ -1,6 +1,6 @@
 "use client";
 
-import { Ref, useRef, useState } from "react";
+import { Ref, useCallback, useRef, useState } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import {
   Autoplay,
@@ -8,58 +8,38 @@ import {
   Thumbs,
   FreeMode,
   Navigation,
+  EffectFade,
 } from "swiper/modules";
 import VideoJS from "./VideoJS";
 import Player from "video.js/dist/types/player";
 import { ClassNames } from "@emotion/react";
 import TransitionLine from "./TransitionLine";
 
-interface Slide {
-  title: string;
-  href: string;
-  video: string;
-}
-
-const slides: Slide[] = [
-  {
-    title: "Exploring the universe and searching for new worlds",
-    href: "",
-    video: "./Eagle.mp4",
-  },
-  {
-    title: "Exploring our solar system",
-    href: "",
-    video: "./MSR.m4v",
-  },
-  {
-    title: "Studying our home planet from air and space",
-    href: "",
-    video: "./OMB.m4v",
-  },
-  {
-    title: "Looking for life beyond Earth",
-    href: "",
-    video: "./Clippe.mp4",
-  },
-  {
-    title: "Creating robots to go where humans can’t",
-    href: "",
-    video: "./Robot.mp4",
-  },
-  {
-    title: "Developing technology to improve life on Earth",
-    href: "",
-    video: "./NISAR.mp4",
-  },
-];
-
 const duration = 7000;
 
-const HomeBanner: React.FC = () => {
+const HomeBanner: React.FC<{slides: Slide[];}> = ({slides}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
 
-  const progressLine = useRef<{ play: () => void; }>(null);
   const playerRef = useRef<Player>();
+
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const handlePlayerReady = (player: Player) => {
+    playerRef.current = player;
+    
+    // You can handle player events here, for example:
+    player.on("ready", () => {
+      console.log('ready');
+      setActiveIndex(0);
+    });
+    player.on("waiting", () => {
+      console.log('waiting');
+    });
+
+    player.on("dispose", () => {
+      console.log("player will dispose");
+    });
+  };
 
   const videoJsOptions = {
     autoplay: true,
@@ -69,33 +49,19 @@ const HomeBanner: React.FC = () => {
     responsive: true,
     sources: [
       {
-        src: "./NISAR.mp4",
+        src: slides[activeIndex > 0 ? activeIndex : 0]?.video,
         type: "video/mp4",
       },
     ],
   };
 
-  const handlePlayerReady = (player: Player) => {
-    playerRef.current = player;
-    
-    // You can handle player events here, for example:
-    player.on("ready", () => {
-      progressLine.current?.play();
-    });
-    player.on("waiting", () => {
-      progressLine.current?.play();
-    });
-
-    player.on("dispose", () => {
-      console.log("player will dispose");
-    });
-  };
-
-  const onSlideChange = (swiper: SwiperClass) => {
+  const onSlideChange = useCallback((swiper: SwiperClass) => {
     const index = swiper.activeIndex;
-    playerRef.current?.src(slides[index].video);
-    playerRef.current?.play();
-  }
+    if (index === activeIndex) {
+      return;
+    }
+    setActiveIndex(index);
+  },[activeIndex])
   return (
     <>
       <ClassNames>
@@ -137,7 +103,7 @@ const HomeBanner: React.FC = () => {
               pagination={{
                 clickable: true,
               }}
-              modules={[Autoplay, Thumbs, Pagination]}
+              modules={[Autoplay, Thumbs, Pagination, EffectFade]}
               onSlideChange={onSlideChange}
               // onAutoplayTimeLeft={onAutoplayTimeLeft}
               thumbs={{ swiper: thumbsSwiper }}
@@ -200,8 +166,8 @@ const HomeBanner: React.FC = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="absolute bottom-0 inset-x-0 z-10 lg:block hidden  bg-black bg-opacity-50 h-40">
-              <TransitionLine ref={progressLine} />
+             <div className="absolute bottom-0 inset-x-0 z-10 lg:block hidden  bg-black bg-opacity-50 h-40">
+              {activeIndex > -1 && <TransitionLine activeIndex={activeIndex} />}
               <Swiper
                 onSwiper={setThumbsSwiper}
                 loop={true}
@@ -237,7 +203,7 @@ const HomeBanner: React.FC = () => {
             </div>
 
             <VideoJS
-              className="absolute w-full h-full top-0 -z-10"
+              className="absolute w-full h-full top-0 -z-10 bg-black"
               options={videoJsOptions}
               onReady={handlePlayerReady}
             />

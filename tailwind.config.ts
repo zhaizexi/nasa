@@ -20,8 +20,10 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
+        "jpl-red": "rgb(227, 25, 55)",
         "jpl-red-light": "rgb(231,59,84)",
         "dark-blue": "rgb(0,69,98)",
+        "gray-mid-dark": "rgb(111,111,111)"
       },
       screens: {
         sm: "640px",
@@ -34,6 +36,7 @@ const config: Config = {
       },
       padding: {
         "22": "5.5rem",
+        "18": "4.5rem"
       },
       keyframes: {
         "slide-in": {
@@ -58,15 +61,22 @@ const config: Config = {
         },
       },
       animation: {
-        'slide-in': 'slide-in 7s linear infinite',
+        'slide-in': 'slide-in 7s linear',
       }
     },
     fontSize: {
-      xl: "1.25rem",
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "xl": "1.25rem",
+      "2xl": "1.375rem",
       "3xl": "1.5rem",
+      "4xl": "1.625rem",
       "5xl": "1.75rem",
+      "6xl": "2rem",
       "7xl": "2.5rem",
+      "8xl": "7.75rem",
       "9xl": "3.5rem",
+      
     },
   },
   plugins: [],
