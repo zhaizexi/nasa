@@ -15,3 +15,12 @@ interface News {
   href: string;
   img: string;
 }
+
+interface Celestial {
+  name: string;
+  missions: {
+    current: number;
+    past: number;
+  }
+  img: string;
+}

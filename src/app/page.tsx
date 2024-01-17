@@ -1,7 +1,9 @@
 import Image from "next/image";
 import HomeBanner from "./components/HomeBanner";
 import NewsSection from "./components/NewsSection";
+import CelestialSection from './components/CelestialSection';
 import labImg from "@/assets/image/lab.jpg";
+import starBgImg from "@/assets/image/bg-stars.jpg";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 async function getPageData() {
   const slides: Slide[] = [
@@ -108,14 +110,89 @@ async function getPageData() {
       img: "/news/11.jpg",
     },
   ];
+  const celestials: Celestial[] = [
+    {
+      name: 'Earth',
+      img: '/celestial/Earth.webp',
+      missions: {
+        current: 24,
+        past: 30
+      }
+    },
+    {
+      name: 'Mars',
+      img: '/celestial/Mars.webp',
+      missions: {
+        current: 5,
+        past: 18
+      }
+    },
+    {
+      name: 'Jupiter',
+      img: '/celestial/Jupiter.webp',
+      missions: {
+        current: 1,
+        past: 1
+      }
+    },
+    {
+      name: 'Europa',
+      img: '/celestial/Europa.webp',
+      missions: {
+        current: 0,
+        past: 1
+      }
+    },
+    {
+      name: 'Asteroids and Comets',
+      img: '/celestial/Vesta.webp',
+      missions: {
+        current: 3,
+        past: 7
+      }
+    },
+    {
+      name: 'Saturn',
+      img: '/celestial/satur.webp',
+      missions: {
+        current: 0,
+        past: 1
+      }
+    },
+    {
+      name: 'Interstellar Space',
+      img: '/celestial/interstellar.webp',
+      missions: {
+        current: 2,
+        past: 0
+      }
+    },
+    {
+      name: 'Exoplanets',
+      img: '/celestial/exoplanets.webp',
+      missions: {
+        current: 2,
+        past: 5
+      }
+    },
+    {
+      name: 'Stars and Galaxies',
+      img: '/celestial/stars.webp',
+      missions: {
+        current: 5,
+        past: 8
+      }
+    },
+  ];
   return {
     slides,
     news,
+    celestials,
   };
 }
 
 export default async function Home() {
-  const { slides, news } = await getPageData();
+  const { slides, news, celestials } = await getPageData();
   return (
     <div>
       <HomeBanner slides={slides} />
@@ -430,6 +507,43 @@ export default async function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <div className="container mx-auto lg:my-18 my-10">
+        <div className="flex flex-col justify-center items-center text-jpl-red italic text-3xl	">
+          <div className="h-[1px] w-24 bg-jpl-red"></div>
+          <div className="py-6 text-[30px]">
+            JPL is federally funded by NASA and managed by Caltech.
+          </div>
+          <div className="h-[1px] w-24 bg-jpl-red"></div>
+        </div>
+      </div>
+      <section className="max-w-screen-3xl mx-auto overflow-hidden text-white bg-black lg:my-18 my-10 relative">
+        <Image
+          className="absolute z-0"
+          src={starBgImg}
+          alt="starbg"
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
+        />
+        <div className="relative z-10 lg:py-24 pt-14 pb-5">
+          <div className="container mx-auto">
+            <p className="text-subtitle text-jpl-red-light mb-3">Missions</p>{" "}
+            <h2 className="mb-3 text-h2">Exploring the Universe</h2>
+            <p className="text-body-md">
+              Spacecraft developed at JPL have flown to every planet in the
+              solar system and the Sun, and beyond.
+            </p>
+          </div>
+          <div className="text-jpl-red-light absolute top-14 lg:top-24  right-0">
+            <span className="flex items-center">
+              All Missions
+              <KeyboardArrowRightIcon className="transition group-hover:translate-x-3" />
+            </span>
+          </div>
+          <CelestialSection celestials={celestials} />
         </div>
       </section>
     </div>
