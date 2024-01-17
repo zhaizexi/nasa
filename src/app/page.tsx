@@ -1,3 +1,4 @@
+import Image from "next/image";
 import HomeBanner from "./components/HomeBanner";
 import NewsSection from "./components/NewsSection";
 
@@ -6,41 +7,111 @@ async function getPageData() {
     {
       title: "Exploring the universe and searching for new worlds",
       href: "",
-      video: "./Eagle.mp4",
+      video: "./video/Eagle.mp4",
     },
     {
       title: "Exploring our solar system",
       href: "",
-      video: "./MSR.m4v",
+      video: "./video/MSR.m4v",
     },
     {
       title: "Studying our home planet from air and space",
       href: "",
-      video: "./OMB.m4v",
+      video: "./video/OMB.m4v",
     },
     {
       title: "Looking for life beyond Earth",
       href: "",
-      video: "./Clippe.mp4",
+      video: "./video/Clippe.mp4",
     },
     {
       title: "Creating robots to go where humans can’t",
       href: "",
-      video: "./Robot.mp4",
+      video: "./video/Robot.mp4",
     },
     {
       title: "Developing technology to improve life on Earth",
       href: "",
-      video: "./NISAR.mp4",
+      video: "./video/NISAR.mp4",
     },
   ];
+  const news: News[] = [
+    {
+      title: "This US-Indian Satellite Will Monitor Earth’s Changing Frozen Regions",
+      href: "",
+      subject: "Climate Change",
+      img: "/news/1.jpg"
+    },
+    {
+      title: "What Are Some Skywatching Highlights in January 2024?",
+      href: "",
+      subject: "VIDEO",
+      img: "/news/2.jpg"
+    },
+    {
+      title: "NASA’s Curiosity Rover Captures a Martian Day, From Dawn to Dusk",
+      href: "",
+      subject: "Mars",
+      img: "/news/3.jpg"
+    },
+    {
+      title: "NASA’s Juno to Get Close Look at Jupiter’s Volcanic Moon Io on Dec. 30",
+      href: "",
+      subject: "Solar System",
+      img: "/news/4.jpg"
+    },
+    {
+      title: "NASA’s Deep Space Network Turns 60 and Prepares for the Future",
+      href: "",
+      subject: "Technology",
+      img: "/news/5.jpg"
+    },
+    {
+      title: "Meet the Infrared Telescopes That Paved the Way for NASA’s Webb",
+      href: "",
+      subject: "Stars and Galaxies",
+      img: "/news/6.jpg"
+    },
+    {
+      title: "As the Arctic Warms, Its Waters Are Emitting Carbon",
+      href: "",
+      subject: "Climate Change",
+      img: "/news/7.jpg"
+    },
+    {
+      title: "NASA’s Tech Demo Streams First Video From Deep Space via Laser",
+      href: "",
+      subject: "Technology",
+      img: "/news/8.jpg"
+    },
+    {
+      title: "Solar System",
+      href: "",
+      subject: "NASA Study Finds Life-Sparking Energy Source and Molecule at Enceladus",
+      img: "/news/9.jpg"
+    },
+    {
+      title: "NASA’s NEOWISE Celebrates 10 Years, Plans End of Mission",
+      href: "",
+      subject: "Asteroids and Comets",
+      img: "/news/10.jpg"
+    },
+    {
+      title: "NASA’s Perseverance Rover Deciphers Ancient History of Martian Lake",
+      href: "",
+      subject: "Mars",
+      img: "/news/11.jpg"
+    },
+
+  ]
   return {
     slides,
+    news,
   };
 }
 
 export default async function Home() {
-  const {slides} = await getPageData();
+  const {slides,news} = await getPageData();
   return (
     <div>
       <HomeBanner slides={slides} />
@@ -274,7 +345,12 @@ export default async function Home() {
           <div className="absolute right-0 top-0 w-1/2 h-full bg-neutral-100"></div>
         </div>
       </div>
-      <NewsSection />
+      <NewsSection news={news} />
+      <section className="max-w-screen-3xl relative mx-auto lg:my-18 my-10">
+        <div className="lg:mb-0 mb-10 relative w-full aspect-[1024/306]">
+          <Image src="/laboratory/jpl_day.jpg" alt="laboratory" fill={true} priority={false} />
+        </div>
+      </section>
     </div>
   );
 }

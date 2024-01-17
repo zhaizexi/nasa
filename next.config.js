@@ -18,6 +18,7 @@ const nextConfig = {
         port: '',
       },
     ],
+    deviceSizes: [320,768,1440,1600]
   },
 }
 

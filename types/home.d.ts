@@ -8,3 +8,10 @@ interface Slide {
   href: string;
   video: string;
 }
+
+interface News {
+  title: string;
+  subject: string;
+  href: string;
+  img: string;
+}
