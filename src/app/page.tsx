@@ -1,7 +1,8 @@
 import Image from "next/image";
 import HomeBanner from "./components/HomeBanner";
 import NewsSection from "./components/NewsSection";
-
+import labImg from "@/assets/image/lab.jpg";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 async function getPageData() {
   const slides: Slide[] = [
     {
@@ -37,73 +38,76 @@ async function getPageData() {
   ];
   const news: News[] = [
     {
-      title: "This US-Indian Satellite Will Monitor Earth’s Changing Frozen Regions",
+      title:
+        "This US-Indian Satellite Will Monitor Earth’s Changing Frozen Regions",
       href: "",
       subject: "Climate Change",
-      img: "/news/1.jpg"
+      img: "/news/1.jpg",
     },
     {
       title: "What Are Some Skywatching Highlights in January 2024?",
       href: "",
       subject: "VIDEO",
-      img: "/news/2.jpg"
+      img: "/news/2.jpg",
     },
     {
       title: "NASA’s Curiosity Rover Captures a Martian Day, From Dawn to Dusk",
       href: "",
       subject: "Mars",
-      img: "/news/3.jpg"
+      img: "/news/3.jpg",
     },
     {
-      title: "NASA’s Juno to Get Close Look at Jupiter’s Volcanic Moon Io on Dec. 30",
+      title:
+        "NASA’s Juno to Get Close Look at Jupiter’s Volcanic Moon Io on Dec. 30",
       href: "",
       subject: "Solar System",
-      img: "/news/4.jpg"
+      img: "/news/4.jpg",
     },
     {
       title: "NASA’s Deep Space Network Turns 60 and Prepares for the Future",
       href: "",
       subject: "Technology",
-      img: "/news/5.jpg"
+      img: "/news/5.jpg",
     },
     {
       title: "Meet the Infrared Telescopes That Paved the Way for NASA’s Webb",
       href: "",
       subject: "Stars and Galaxies",
-      img: "/news/6.jpg"
+      img: "/news/6.jpg",
     },
     {
       title: "As the Arctic Warms, Its Waters Are Emitting Carbon",
       href: "",
       subject: "Climate Change",
-      img: "/news/7.jpg"
+      img: "/news/7.jpg",
     },
     {
       title: "NASA’s Tech Demo Streams First Video From Deep Space via Laser",
       href: "",
       subject: "Technology",
-      img: "/news/8.jpg"
+      img: "/news/8.jpg",
     },
     {
       title: "Solar System",
       href: "",
-      subject: "NASA Study Finds Life-Sparking Energy Source and Molecule at Enceladus",
-      img: "/news/9.jpg"
+      subject:
+        "NASA Study Finds Life-Sparking Energy Source and Molecule at Enceladus",
+      img: "/news/9.jpg",
     },
     {
       title: "NASA’s NEOWISE Celebrates 10 Years, Plans End of Mission",
       href: "",
       subject: "Asteroids and Comets",
-      img: "/news/10.jpg"
+      img: "/news/10.jpg",
     },
     {
-      title: "NASA’s Perseverance Rover Deciphers Ancient History of Martian Lake",
+      title:
+        "NASA’s Perseverance Rover Deciphers Ancient History of Martian Lake",
       href: "",
       subject: "Mars",
-      img: "/news/11.jpg"
+      img: "/news/11.jpg",
     },
-
-  ]
+  ];
   return {
     slides,
     news,
@@ -111,7 +115,7 @@ async function getPageData() {
 }
 
 export default async function Home() {
-  const {slides,news} = await getPageData();
+  const { slides, news } = await getPageData();
   return (
     <div>
       <HomeBanner slides={slides} />
@@ -348,7 +352,84 @@ export default async function Home() {
       <NewsSection news={news} />
       <section className="max-w-screen-3xl relative mx-auto lg:my-18 my-10">
         <div className="lg:mb-0 mb-10 relative w-full aspect-[1024/306]">
-          <Image src="/laboratory/jpl_day.jpg" alt="laboratory" fill={true} priority={false} />
+          <Image
+            src="/laboratory/jpl_day.jpg"
+            alt="laboratory"
+            fill={true}
+            priority={false}
+          />
+        </div>
+        <div className="lg:px-4 2xl:px-0">
+          <div className="container relative z-10 mx-auto bg-white lg:-mt-26 lg:pt-22 lg:grid grid-cols-12 gap-6">
+            <div className="lg:px-0 lg:col-end-8 xl:col-end-9 col-start-2 px-4">
+              <h2 className="lg:mb-8 mb-5 text-h2">
+                Jet Propulsion Laboratory
+              </h2>{" "}
+              <div className="BlockText lg:pr-14 text-body-lg">
+                <p>
+                  Have you been awed by views of desolate Martian Valleys,
+                  swirling storms above Jupiter, and the icy blades ringing
+                  Saturn? Then you have journeyed with NASA JPL spacecraft and
+                  rovers.
+                </p>
+                <br />
+                <p>
+                  Our missions have flown to every planet and the Sun in a quest
+                  to understand our place in the universe, and to search for the
+                  possibility of life beyond Earth.
+                </p>
+              </div>{" "}
+              <div className="mt-5">
+                <a
+                  href=""
+                  className="group text-subtitle text-theme-red hover:text-theme-red-hover cursor-pointer inline-block"
+                >
+                  <span className="py-2">
+                    <span className="text-jpl-red flex items-center group">
+                      Learn more
+                      <KeyboardArrowRightIcon className="transition group-hover:translate-x-3" />
+                    </span>{" "}
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div className="lg:mt-0 lg:mx-0 xl:col-span-3 sm:mx-auto lg:w-auto sm:w-80 lg:col-start-8 xl:col-start-9 col-span-4 mx-6 mt-12">
+              <div className="shadow-jpl">
+                <Image
+                  src={labImg}
+                  alt="laboratory"
+                  priority={false}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                />
+                <div className="px-6 pt-6 pb-4">
+                  <div className="mb-2 text-3xl font-medium">Virtual Tour</div>{" "}
+                  <p className="text-body-sm">
+                    Explore the JPL campus virtually with interactive 360
+                    panoramas of Mission Control, the Spacecraft Assembly
+                    Facility, the visitor museum, and more.
+                  </p>{" "}
+                  <div className="mt-3">
+                    <a
+                      href="https://www.jpl.nasa.gov/virtual-tour/"
+                      target="_blank"
+                      rel="noopener"
+                      className="group text-subtitle text-theme-red can-hover:hover:text-theme-red-hover cursor-pointer inline-block"
+                    >
+                      <span className="py-2">
+                        <span className="text-jpl-red flex items-center group">
+                          Take the tour
+                          <KeyboardArrowRightIcon className="transition group-hover:translate-x-3" />
+                        </span>{" "}
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

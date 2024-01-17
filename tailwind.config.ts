@@ -38,6 +38,11 @@ const config: Config = {
         "22": "5.5rem",
         "18": "4.5rem"
       },
+      margin: {
+        "18": "4.5rem",
+        "22": "5.5rem",
+        "26": "6.5rem",
+      },
       keyframes: {
         "slide-in": {
           from: {
@@ -62,6 +67,9 @@ const config: Config = {
       },
       animation: {
         'slide-in': 'slide-in 7s linear',
+      },
+      boxShadow: {
+        "jpl": '-4px 5px 60px 0 rgba(0,0,0,0.1)',
       }
     },
     fontSize: {
