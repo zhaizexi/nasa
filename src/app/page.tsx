@@ -6,6 +6,10 @@ import labImg from "@/assets/image/lab.jpg";
 import starBgImg from "@/assets/image/bg-stars.jpg";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import EngageSection from "./components/EngageSection";
+
+import logoImg from '@/assets/image/jpl-logo.png';
+import MemberSection from "./components/MemberSection";
+
 async function getPageData() {
   const slides: Slide[] = [
     {
@@ -189,29 +193,31 @@ async function getPageData() {
     {
       name: "Events",
       subject: "Calendar",
-      img: "/engage/event.jpg"
+      img: "/engage/event.jpg",
     },
     {
       name: "JPL and the Community",
       subject: "",
-      img: "/engage/community.jpg"
+      img: "/engage/community.jpg",
     },
     {
       name: "Lecture Series",
       subject: "",
-      img: "/engage/lecture.jpg"
+      img: "/engage/lecture.jpg",
     },
-  ]
+  ];
+  const members = ['Dreamers','Artists','Communicators','Designers','Educators','Innovators','Inventors','Makers','Problem Solvers','Roboticists','Scientists','Engineers','Thinkers','Visualizers','Oceanographers','Developers','Astrophysicists','Disruptors','Data Scientists','Storytellers']
   return {
     slides,
     news,
     celestials,
     engages,
+    members,
   };
 }
 
 export default async function Home() {
-  const { slides, news, celestials, engages } = await getPageData();
+  const { slides, news, celestials, engages, members } = await getPageData();
   return (
     <main>
       <HomeBanner slides={slides} />
@@ -706,6 +712,37 @@ export default async function Home() {
       </section>
       <section className="bg-neutral-100 lg:py-24 lg:mt-24 py-12 mt-12">
         <EngageSection engages={engages} />
+      </section>
+      <section className="max-w-screen-3xl mx-auto justify-items-center flex w-full h-auto lg:h-[600px] relative">
+        <Image
+          className="absolute w-full h-full object-cover	"
+          src="/artists_bg.jpeg"
+          fill={true}
+          alt="artist"
+        />
+        <div className="lg:pr-12 lg:py-5 lg:flex-row relative z-20 flex flex-col justify-center w-full px-5 py-6">
+          <div className="lg:flex-row lg:pr-3 lg:pb-0 flex flex-col items-center justify-center pb-2">
+            <div className="text-contrast relative z-20 p-2 pl-0">
+              <Image
+                src={logoImg}
+                alt="JPL Logo"
+                width="106"
+                height="32"
+                className="lg:pr-1 h-8 w-auto"
+              />
+            </div>{" "}
+            <div className="lg:p-1 text-contrast relative z-20 pt-2 pl-0">
+              <p className="text-white lg:text-7xl mb-0 text-4xl font-medium">
+                is a place for
+              </p>
+            </div>
+          </div>
+          <div className="text-contrast relative z-20 pt-1 -mt-px h-24 lg:h-full" style={{
+            maskImage:'-webkit-gradient(linear,left top,left bottom,color-stop(0,transparent),color-stop(.1,rgba(0,0,0,.15)),color-stop(.35,#000),color-stop(.65,#000),color-stop(.9,rgba(0,0,0,.15)),color-stop(1,transparent))'
+          }}>
+            <MemberSection members={members} />
+          </div>
+        </div>
       </section>
     </main>
   );
