@@ -194,9 +194,9 @@ async function getPageData() {
 export default async function Home() {
   const { slides, news, celestials } = await getPageData();
   return (
-    <div>
+    <main>
       <HomeBanner slides={slides} />
-      <div className="relative -mt-14 z-20">
+      <section className="relative -mt-14 z-20">
         <div className="container mx-auto ">
           <div className="lg:py-18 lg:px-0 text-body-lg px-8 py-10 pr-0 bg-neutral-100 z-30 gap-y-10 lg:col-end-9 grid grid-cols-12 gap-6">
             <div className="lg:block hidden"></div>
@@ -425,7 +425,7 @@ export default async function Home() {
           </div>
           <div className="absolute right-0 top-0 w-1/2 h-full bg-neutral-100"></div>
         </div>
-      </div>
+      </section>
       <NewsSection news={news} />
       <section className="max-w-screen-3xl relative mx-auto lg:my-18 my-10">
         <div className="lg:mb-0 mb-10 relative w-full aspect-[1024/306]">
@@ -509,7 +509,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <div className="container mx-auto lg:my-18 my-10">
+      <section className="container mx-auto lg:my-18 my-10">
         <div className="flex flex-col justify-center items-center text-jpl-red italic text-3xl	">
           <div className="h-[1px] w-24 bg-jpl-red"></div>
           <div className="py-6 text-[30px]">
@@ -517,7 +517,7 @@ export default async function Home() {
           </div>
           <div className="h-[1px] w-24 bg-jpl-red"></div>
         </div>
-      </div>
+      </section>
       <section className="max-w-screen-3xl mx-auto overflow-hidden text-white bg-black lg:my-18 my-10 relative">
         <Image
           className="absolute z-0"
@@ -552,6 +552,137 @@ export default async function Home() {
           </div>
         </div>
       </section>
-    </div>
+      <section className="grid grid-cols-12 gap-6 lg:px-0 container px-4 mx-auto lg:my-24 my-12">
+        <div className="col-start-1 lg:col-start-2 col-end-12 xl:col-end-6">
+          <p className="text-subtitle text-jpl-red mb-3">Robotics</p>
+          <h2 className="mb-5 text-h2">RoMan</h2>
+        </div>
+        <div className="col-start-1 lg:col-start-2 col-end-12 lg:col-end-6 text-body-lg">
+          Roman was built to advance the ability of autonomous robots to
+          interact with the wide variety of objects that they might encounter in
+          human-scale environments, be they small and hard to grasp or large,
+          heavy, and difficult to move.
+        </div>
+        <div className="col-start-1 lg:col-start-2 col-end-12 lg:col-end-6">
+          <div className="text-gray-dark text-body-lg sm:flex sm:text-left text-center my-10 justify-between">
+            <div className="stat sm:mb-0 mb-6 mr-0">
+              <p className="text-subtitle text-gray-mid-dark mb-4">Mass</p>{" "}
+              <div className="BaseUnitToggle">
+                <p className="sr-only">250.043 Pounds</p>{" "}
+                <span className="text-stats-xl">250.043</span>{" "}
+                <fieldset
+                  aria-label="Change Unit"
+                  className="text-body-xs inline-block lg:block"
+                >
+                  <label aria-label="Pounds" className="cursor-pointer">
+                    <input type="radio" value="imperial" className="sr-only" />{" "}
+                    <span aria-hidden="true" className="unit">
+                      LB
+                    </span>
+                  </label>{" "}
+                  <span aria-hidden="true" className="select-none">
+                    |
+                  </span>{" "}
+                  <label aria-label="Kilograms" className="cursor-pointer">
+                    <input type="radio" value="metric" className="sr-only" />{" "}
+                    <span aria-hidden="true" className="unit">
+                      KG
+                    </span>
+                  </label>
+                </fieldset>
+              </div>
+            </div>
+            <div className="stat sm:mb-0 mb-6 mr-0">
+              <p className="text-subtitle text-gray-mid-dark mb-4">Length</p>{" "}
+              <div className="BaseUnitToggle">
+                <p className="sr-only">4.13 Feet</p>{" "}
+                <span className="text-stats-xl">4.13</span>{" "}
+                <fieldset
+                  aria-label="Change Unit"
+                  className="text-body-xs inline-block lg:block"
+                >
+                  <label aria-label="Feet" className="cursor-pointer">
+                    <input type="radio" value="imperial" className="sr-only" />{" "}
+                    <span aria-hidden="true" className="unit">
+                      FT
+                    </span>
+                  </label>{" "}
+                  <span aria-hidden="true" className="select-none">
+                    |
+                  </span>{" "}
+                  <label aria-label="Meters" className="cursor-pointer">
+                    <input type="radio" value="metric" className="sr-only" />{" "}
+                    <span aria-hidden="true" className="unit">
+                      M
+                    </span>
+                  </label>
+                </fieldset>
+              </div>
+            </div>
+            <div className="stat sm:mb-0 mb-6 mr-0">
+              <p className="text-subtitle text-gray-mid-dark mb-4">Speed</p>{" "}
+              <div className="BaseUnitToggle">
+                <p className="sr-only">14.8 Feet per second</p>{" "}
+                <span className="text-stats-xl">14.8</span>{" "}
+                <fieldset
+                  aria-label="Change Unit"
+                  className="text-body-xs inline-block lg:block"
+                >
+                  <label
+                    aria-label="Feet per second"
+                    className="cursor-pointer"
+                  >
+                    <input type="radio" value="imperial" className="sr-only" />{" "}
+                    <span aria-hidden="true" className="unit">
+                      FT/S
+                    </span>
+                  </label>{" "}
+                  <span aria-hidden="true" className="select-none">
+                    |
+                  </span>{" "}
+                  <label
+                    aria-label="Meters per second"
+                    className="cursor-pointer"
+                  >
+                    <input type="radio" value="metric" className="sr-only" />{" "}
+                    <span aria-hidden="true" className="unit">
+                      M/S
+                    </span>
+                  </label>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-start-1 lg:col-start-2 col-end-12 lg:col-end-6">
+          <a
+            href=""
+            aria-label="Meet ROMAN"
+            className="bg-jpl-red text-white font-semibold px-12 py-3 text-contrast-none lg:mr-3 mb-3 lg:inline-block block"
+          >
+            <span className="flex justify-center">Meet ROMAN</span>
+          </a>
+          <a
+            href=""
+            aria-label="See All Robots"
+            className="bg-jpl-white text-jpl-red border border-jpl-red font-semibold px-12 py-3 text-contrast-none lg:mr-3 mb-3 lg:inline-block block"
+          >
+            <span className="flex justify-center">See All Robots</span>
+          </a>
+        </div>
+        <div className="row-start-3 lg:row-start-2 xl:row-start-1 col-start-1 lg:col-start-6 col-end-12  row-span-4">
+          <Image
+            src="/robot/RoMan.jpg"
+            alt="roman"
+            width={640}
+            height={480}
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+          />
+        </div>
+      </section>
+    </main>
   );
 }

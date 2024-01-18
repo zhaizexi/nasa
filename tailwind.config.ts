@@ -34,14 +34,14 @@ const config: Config = {
         "2xl": "1440px",
         // '3xl': '1800px',
       },
-      padding: {
-        "22": "5.5rem",
-        "18": "4.5rem"
-      },
-      margin: {
+  
+      spacing: {
         "18": "4.5rem",
         "22": "5.5rem",
         "26": "6.5rem",
+      },
+      width: {
+
       },
       keyframes: {
         "slide-in": {
