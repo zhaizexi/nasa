@@ -1,7 +1,7 @@
 import Image from "next/image";
 import HomeBanner from "./components/HomeBanner";
 import NewsSection from "./components/NewsSection";
-import CelestialSection from './components/CelestialSection';
+import CelestialSection from "./components/CelestialSection";
 import labImg from "@/assets/image/lab.jpg";
 import starBgImg from "@/assets/image/bg-stars.jpg";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -112,76 +112,76 @@ async function getPageData() {
   ];
   const celestials: Celestial[] = [
     {
-      name: 'Earth',
-      img: '/celestial/Earth.webp',
+      name: "Earth",
+      img: "/celestial/Earth.webp",
       missions: {
         current: 24,
-        past: 30
-      }
+        past: 30,
+      },
     },
     {
-      name: 'Mars',
-      img: '/celestial/Mars.webp',
+      name: "Mars",
+      img: "/celestial/Mars.webp",
       missions: {
         current: 5,
-        past: 18
-      }
+        past: 18,
+      },
     },
     {
-      name: 'Jupiter',
-      img: '/celestial/Jupiter.webp',
+      name: "Jupiter",
+      img: "/celestial/Jupiter.webp",
       missions: {
         current: 1,
-        past: 1
-      }
+        past: 1,
+      },
     },
     {
-      name: 'Europa',
-      img: '/celestial/Europa.webp',
+      name: "Europa",
+      img: "/celestial/Europa.webp",
       missions: {
         current: 0,
-        past: 1
-      }
+        past: 1,
+      },
     },
     {
-      name: 'Asteroids and Comets',
-      img: '/celestial/Vesta.webp',
+      name: "Asteroids and Comets",
+      img: "/celestial/Vesta.webp",
       missions: {
         current: 3,
-        past: 7
-      }
+        past: 7,
+      },
     },
     {
-      name: 'Saturn',
-      img: '/celestial/satur.webp',
+      name: "Saturn",
+      img: "/celestial/satur.webp",
       missions: {
         current: 0,
-        past: 1
-      }
+        past: 1,
+      },
     },
     {
-      name: 'Interstellar Space',
-      img: '/celestial/interstellar.webp',
+      name: "Interstellar Space",
+      img: "/celestial/interstellar.webp",
       missions: {
         current: 2,
-        past: 0
-      }
+        past: 0,
+      },
     },
     {
-      name: 'Exoplanets',
-      img: '/celestial/exoplanets.webp',
+      name: "Exoplanets",
+      img: "/celestial/exoplanets.webp",
       missions: {
         current: 2,
-        past: 5
-      }
+        past: 5,
+      },
     },
     {
-      name: 'Stars and Galaxies',
-      img: '/celestial/stars.webp',
+      name: "Stars and Galaxies",
+      img: "/celestial/stars.webp",
       missions: {
         current: 5,
-        past: 8
-      }
+        past: 8,
+      },
     },
   ];
   return {
@@ -528,22 +528,28 @@ export default async function Home() {
             height: "auto",
           }}
         />
-        <div className="relative z-10 lg:py-24 pt-14 pb-5">
-          <div className="container mx-auto">
-            <p className="text-subtitle text-jpl-red-light mb-3">Missions</p>{" "}
-            <h2 className="mb-3 text-h2">Exploring the Universe</h2>
-            <p className="text-body-md">
-              Spacecraft developed at JPL have flown to every planet in the
-              solar system and the Sun, and beyond.
-            </p>
+        <div className="z-10 lg:py-24 pt-14 pb-5">
+          <div className="relative">
+            <div className="container mx-auto relative">
+              <p className="text-subtitle text-jpl-red-light mb-3">Missions</p>{" "}
+              <h2 className="mb-3 text-h2">Exploring the Universe</h2>
+              <p className="text-body-md">
+                Spacecraft developed at JPL have flown to every planet in the
+                solar system and the Sun, and beyond.
+              </p>
+            </div>
+            <CelestialSection celestials={celestials} />
+            <div className="absolute top-full lg:top-0  right-0 w-full ">
+              <div className="container mx-auto flex justify-end w-full">
+                <div className="text-subtitle cursor-pointer text-jpl-red-light ">
+                  <span className="flex items-center">
+                    All Missions
+                    <KeyboardArrowRightIcon className="transition group-hover:translate-x-3" />
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="text-jpl-red-light absolute top-14 lg:top-24  right-0">
-            <span className="flex items-center">
-              All Missions
-              <KeyboardArrowRightIcon className="transition group-hover:translate-x-3" />
-            </span>
-          </div>
-          <CelestialSection celestials={celestials} />
         </div>
       </section>
     </div>
