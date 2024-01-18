@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useState, memo } from "react";
+import { memo } from "react";
 
 interface Props {
   activeIndex: number;

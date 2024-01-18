@@ -24,3 +24,9 @@ interface Celestial {
   }
   img: string;
 }
+
+interface Engage {
+  subject: string;
+  name: string;
+  img: string;
+}

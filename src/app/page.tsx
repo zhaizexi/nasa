@@ -5,6 +5,7 @@ import CelestialSection from "./components/CelestialSection";
 import labImg from "@/assets/image/lab.jpg";
 import starBgImg from "@/assets/image/bg-stars.jpg";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import EngageSection from "./components/EngageSection";
 async function getPageData() {
   const slides: Slide[] = [
     {
@@ -184,15 +185,33 @@ async function getPageData() {
       },
     },
   ];
+  const engages: Engage[] = [
+    {
+      name: "Events",
+      subject: "Calendar",
+      img: "/engage/event.jpg"
+    },
+    {
+      name: "JPL and the Community",
+      subject: "",
+      img: "/engage/community.jpg"
+    },
+    {
+      name: "Lecture Series",
+      subject: "",
+      img: "/engage/lecture.jpg"
+    },
+  ]
   return {
     slides,
     news,
     celestials,
+    engages,
   };
 }
 
 export default async function Home() {
-  const { slides, news, celestials } = await getPageData();
+  const { slides, news, celestials, engages } = await getPageData();
   return (
     <main>
       <HomeBanner slides={slides} />
@@ -426,7 +445,9 @@ export default async function Home() {
           <div className="absolute right-0 top-0 w-1/2 h-full bg-neutral-100"></div>
         </div>
       </section>
-      <NewsSection news={news} />
+      <section className="mt-20">
+        <NewsSection news={news} />
+      </section>
       <section className="max-w-screen-3xl relative mx-auto lg:my-18 my-10">
         <div className="lg:mb-0 mb-10 relative w-full aspect-[1024/306]">
           <Image
@@ -682,6 +703,9 @@ export default async function Home() {
             }}
           />
         </div>
+      </section>
+      <section className="bg-neutral-100 lg:py-24 lg:mt-24 py-12 mt-12">
+        <EngageSection engages={engages} />
       </section>
     </main>
   );

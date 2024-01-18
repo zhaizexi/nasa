@@ -10,10 +10,10 @@ import {
   Navigation,
   EffectFade,
 } from "swiper/modules";
-import VideoJS from "./VideoJS";
+import VideoJS from "@/components/VideoJS";
 import Player from "video.js/dist/types/player";
 import { ClassNames } from "@emotion/react";
-import TransitionLine from "./TransitionLine";
+import TransitionLine from "@/components/TransitionLine";
 
 const duration = 7000;
 
