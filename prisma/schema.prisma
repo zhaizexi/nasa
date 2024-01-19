@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Topic {
+  id       String  @id @default(uuid())
+  name     String  @unique
+  title    String  @unique
+  subtitle String
+  maskUrl  String?
+  news     News[]
+}
+
+model Slide {
+  id       String  @id @default(uuid())
+  title    String  @unique
+  url      String
+  videoUrl String
+  active   Boolean @default(true)
+}
+
+model News {
+  id      String @id @default(uuid())
+  title   String @unique
+  content String
+  maskUrl String
+  topicId String
+  topic   Topic? @relation(fields: [topicId], references: [id])
+}
+
+model Target {
+  id        String    @id @default(uuid())
+  name      String
+  imgUrl    String
+  indisplay Boolean   @default(true)
+  missions  Mission[]
+}
+
+enum MissionStatus {
+  past
+  current
+  future
+  proposed
+}
+
+model Mission {
+  id          String        @id @default(uuid())
+  name        String        @unique
+  description String?
+  launchDate  DateTime      @db.Date
+  targetId    String
+  target      Target?       @relation(fields: [targetId], references: [id])
+  status      MissionStatus @default(current)
+}

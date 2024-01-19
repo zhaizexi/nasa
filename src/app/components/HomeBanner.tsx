@@ -1,6 +1,6 @@
 "use client";
 
-import { Ref, useCallback, useRef, useState } from "react";
+import { Ref, useCallback, useEffect, useRef, useState } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import {
   Autoplay,
@@ -14,6 +14,7 @@ import VideoJS from "@/components/VideoJS";
 import Player from "video.js/dist/types/player";
 import { ClassNames } from "@emotion/react";
 import TransitionLine from "@/components/TransitionLine";
+import { Slide } from '@prisma/client';
 
 const duration = 7000;
 
@@ -49,7 +50,7 @@ const HomeBanner: React.FC<{slides: Slide[];}> = ({slides}) => {
     responsive: true,
     sources: [
       {
-        src: slides[activeIndex > 0 ? activeIndex : 0]?.video,
+        src: slides[activeIndex > 0 ? activeIndex : 0]?.videoUrl,
         type: "video/mp4",
       },
     ],
@@ -62,6 +63,7 @@ const HomeBanner: React.FC<{slides: Slide[];}> = ({slides}) => {
     }
     setActiveIndex(index);
   },[activeIndex])
+
   return (
     <>
       <ClassNames>
@@ -95,22 +97,18 @@ const HomeBanner: React.FC<{slides: Slide[];}> = ({slides}) => {
           >
             <Swiper
               spaceBetween={0}
-              loop={true}
               autoplay={{
                 delay: duration,
                 disableOnInteraction: false,
               }}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Autoplay, Thumbs, Pagination, EffectFade]}
+              rewind={true}     
+              modules={[Autoplay, Thumbs, EffectFade]}
               onSlideChange={onSlideChange}
-              // onAutoplayTimeLeft={onAutoplayTimeLeft}
               thumbs={{ swiper: thumbsSwiper }}
               className="mySwiper container h-[500px] lg:h-[800px]"
             >
               {slides.map((slide) => (
-                <SwiperSlide key={slide.title}>
+                <SwiperSlide key={slide.id}>
                   <div className="absolute bottom-0 lg:bottom-1/2 lg:translate-y-1/2 lg:px-10 2xl:px-0 lg:pb-10 lg:pt-0 text-contrast px-4 pt-40 pb-24 text-white">
                     <div className="lg:w-3/4 xl:w-1/2 block">
                       <p className="font-primary text-jpl-red-light lg:text-3xl lg:mb-0 mb-2 text-xl font-semibold tracking-normal uppercase">
@@ -170,7 +168,6 @@ const HomeBanner: React.FC<{slides: Slide[];}> = ({slides}) => {
               {activeIndex > -1 && <TransitionLine activeIndex={activeIndex} />}
               <Swiper
                 onSwiper={setThumbsSwiper}
-                loop={true}
                 spaceBetween={10}
                 slidesPerView={5}
                 freeMode={true}

@@ -4,11 +4,14 @@ import { SwiperSlide } from "swiper/react";
 import {} from "swiper/modules";
 import Image from "next/image";
 import CenterSwiper from "@/components/CenterSwiper";
+import { News, Topic } from '@prisma/client';
+
+type NewsType = News & {topic: Topic|null}
 interface Props {
-  news: News[];
+  news: NewsType[];
 }
 
-const renderNews= (news: News) => {
+const renderNews= (news:NewsType) => {
   return (
     <SwiperSlide
       key={news.title}
@@ -19,7 +22,7 @@ const renderNews= (news: News) => {
         <div className="bg-gray-dark relative mb-6 overflow-hidden lg:mb-10 aspect-video">
           <Image
             className="transition-all duration-300 scale-105 delay-200 group-hover/item:scale-100"
-            src={news.img}
+            src={news.maskUrl}
             alt={news.title}
             priority={false}
             unoptimized
@@ -29,7 +32,7 @@ const renderNews= (news: News) => {
         <div className="transition-all duration-300 delay-200  group-hover/item:-translate-y-5">
           <div className="flex flex-wrap">
             <p className="text-subtitle divide-gray-mid flex divide-x mb-4">
-              <span>{news.subject}</span> <span className="sr-only">.</span>
+              <span>{news.topic?.title}</span> <span className="sr-only">.</span>
             </p>
           </div>{" "}
           <p className="text-gray-dark text-xl font-medium leading-tight tracking-tight lg:text-3xl">

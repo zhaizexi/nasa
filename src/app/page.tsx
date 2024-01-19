@@ -7,114 +7,30 @@ import starBgImg from "@/assets/image/bg-stars.jpg";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import EngageSection from "./components/EngageSection";
 
-import logoImg from '@/assets/image/jpl-logo.png';
+import logoImg from "@/assets/image/jpl-logo.png";
 import MemberSection from "./components/MemberSection";
 
+import prisma from "../../lib/prisma";
+import { Slide } from "@prisma/client";
+
+interface Props {
+  slides: Slide[];
+}
+
 async function getPageData() {
-  const slides: Slide[] = [
-    {
-      title: "Exploring the universe and searching for new worlds",
-      href: "",
-      video: "./video/Eagle.mp4",
+  const getSlides = prisma.slide.findMany({
+    where: {
+      active: true,
     },
-    {
-      title: "Exploring our solar system",
-      href: "",
-      video: "./video/MSR.m4v",
+  });
+  const getNews = prisma.news.findMany({
+    take: 11,
+    include: {
+      topic: true,
     },
-    {
-      title: "Studying our home planet from air and space",
-      href: "",
-      video: "./video/OMB.m4v",
-    },
-    {
-      title: "Looking for life beyond Earth",
-      href: "",
-      video: "./video/Clippe.mp4",
-    },
-    {
-      title: "Creating robots to go where humans can’t",
-      href: "",
-      video: "./video/Robot.mp4",
-    },
-    {
-      title: "Developing technology to improve life on Earth",
-      href: "",
-      video: "./video/NISAR.mp4",
-    },
-  ];
-  const news: News[] = [
-    {
-      title:
-        "This US-Indian Satellite Will Monitor Earth’s Changing Frozen Regions",
-      href: "",
-      subject: "Climate Change",
-      img: "/news/1.jpg",
-    },
-    {
-      title: "What Are Some Skywatching Highlights in January 2024?",
-      href: "",
-      subject: "VIDEO",
-      img: "/news/2.jpg",
-    },
-    {
-      title: "NASA’s Curiosity Rover Captures a Martian Day, From Dawn to Dusk",
-      href: "",
-      subject: "Mars",
-      img: "/news/3.jpg",
-    },
-    {
-      title:
-        "NASA’s Juno to Get Close Look at Jupiter’s Volcanic Moon Io on Dec. 30",
-      href: "",
-      subject: "Solar System",
-      img: "/news/4.jpg",
-    },
-    {
-      title: "NASA’s Deep Space Network Turns 60 and Prepares for the Future",
-      href: "",
-      subject: "Technology",
-      img: "/news/5.jpg",
-    },
-    {
-      title: "Meet the Infrared Telescopes That Paved the Way for NASA’s Webb",
-      href: "",
-      subject: "Stars and Galaxies",
-      img: "/news/6.jpg",
-    },
-    {
-      title: "As the Arctic Warms, Its Waters Are Emitting Carbon",
-      href: "",
-      subject: "Climate Change",
-      img: "/news/7.jpg",
-    },
-    {
-      title: "NASA’s Tech Demo Streams First Video From Deep Space via Laser",
-      href: "",
-      subject: "Technology",
-      img: "/news/8.jpg",
-    },
-    {
-      title: "Solar System",
-      href: "",
-      subject:
-        "NASA Study Finds Life-Sparking Energy Source and Molecule at Enceladus",
-      img: "/news/9.jpg",
-    },
-    {
-      title: "NASA’s NEOWISE Celebrates 10 Years, Plans End of Mission",
-      href: "",
-      subject: "Asteroids and Comets",
-      img: "/news/10.jpg",
-    },
-    {
-      title:
-        "NASA’s Perseverance Rover Deciphers Ancient History of Martian Lake",
-      href: "",
-      subject: "Mars",
-      img: "/news/11.jpg",
-    },
-  ];
+  });
+
+  const [slides, news] = await Promise.all([getSlides, getNews]);
   const celestials: Celestial[] = [
     {
       name: "Earth",
@@ -206,7 +122,28 @@ async function getPageData() {
       img: "/engage/lecture.jpg",
     },
   ];
-  const members = ['Dreamers','Artists','Communicators','Designers','Educators','Innovators','Inventors','Makers','Problem Solvers','Roboticists','Scientists','Engineers','Thinkers','Visualizers','Oceanographers','Developers','Astrophysicists','Disruptors','Data Scientists','Storytellers']
+  const members = [
+    "Dreamers",
+    "Artists",
+    "Communicators",
+    "Designers",
+    "Educators",
+    "Innovators",
+    "Inventors",
+    "Makers",
+    "Problem Solvers",
+    "Roboticists",
+    "Scientists",
+    "Engineers",
+    "Thinkers",
+    "Visualizers",
+    "Oceanographers",
+    "Developers",
+    "Astrophysicists",
+    "Disruptors",
+    "Data Scientists",
+    "Storytellers",
+  ];
   return {
     slides,
     news,
@@ -216,7 +153,7 @@ async function getPageData() {
   };
 }
 
-export default async function Home() {
+export default async function Home(props: Props) {
   const { slides, news, celestials, engages, members } = await getPageData();
   return (
     <main>
@@ -737,9 +674,13 @@ export default async function Home() {
               </p>
             </div>
           </div>
-          <div className="text-contrast relative z-20 pt-1 -mt-px h-24 lg:h-full" style={{
-            maskImage:'-webkit-gradient(linear,left top,left bottom,color-stop(0,transparent),color-stop(.1,rgba(0,0,0,.15)),color-stop(.35,#000),color-stop(.65,#000),color-stop(.9,rgba(0,0,0,.15)),color-stop(1,transparent))'
-          }}>
+          <div
+            className="text-contrast relative z-20 pt-1 -mt-px h-24 lg:h-full"
+            style={{
+              maskImage:
+                "-webkit-gradient(linear,left top,left bottom,color-stop(0,transparent),color-stop(.1,rgba(0,0,0,.15)),color-stop(.35,#000),color-stop(.65,#000),color-stop(.9,rgba(0,0,0,.15)),color-stop(1,transparent))",
+            }}
+          >
             <MemberSection members={members} />
           </div>
         </div>
