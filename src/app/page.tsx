@@ -29,82 +29,13 @@ async function getPageData() {
       topic: true,
     },
   });
-
-  const [slides, news] = await Promise.all([getSlides, getNews]);
-  const celestials: Celestial[] = [
-    {
-      name: "Earth",
-      img: "/celestial/Earth.webp",
-      missions: {
-        current: 24,
-        past: 30,
-      },
+  const getTargets = prisma.target.findMany({
+    take: 9,
+    include: {
+      missions: true,
     },
-    {
-      name: "Mars",
-      img: "/celestial/Mars.webp",
-      missions: {
-        current: 5,
-        past: 18,
-      },
-    },
-    {
-      name: "Jupiter",
-      img: "/celestial/Jupiter.webp",
-      missions: {
-        current: 1,
-        past: 1,
-      },
-    },
-    {
-      name: "Europa",
-      img: "/celestial/Europa.webp",
-      missions: {
-        current: 0,
-        past: 1,
-      },
-    },
-    {
-      name: "Asteroids and Comets",
-      img: "/celestial/Vesta.webp",
-      missions: {
-        current: 3,
-        past: 7,
-      },
-    },
-    {
-      name: "Saturn",
-      img: "/celestial/satur.webp",
-      missions: {
-        current: 0,
-        past: 1,
-      },
-    },
-    {
-      name: "Interstellar Space",
-      img: "/celestial/interstellar.webp",
-      missions: {
-        current: 2,
-        past: 0,
-      },
-    },
-    {
-      name: "Exoplanets",
-      img: "/celestial/exoplanets.webp",
-      missions: {
-        current: 2,
-        past: 5,
-      },
-    },
-    {
-      name: "Stars and Galaxies",
-      img: "/celestial/stars.webp",
-      missions: {
-        current: 5,
-        past: 8,
-      },
-    },
-  ];
+  });
+  const [slides, news, celestials] = await Promise.all([getSlides, getNews,getTargets]);
   const engages: Engage[] = [
     {
       name: "Events",
@@ -193,7 +124,7 @@ export default async function Home(props: Props) {
                   dateTime="P2Y11MT9H45M33S"
                   className="BaseTimer whitespace-nowrap"
                 >
-                  <span className="transition-opacity duration-500 ease-in-out opacity-0 opacity-100">
+                  <span className="transition-opacity duration-500 ease-in-out opacity-100">
                     <span>
                       <span
                         aria-hidden="true"
@@ -663,8 +594,6 @@ export default async function Home(props: Props) {
               <Image
                 src={logoImg}
                 alt="JPL Logo"
-                width="106"
-                height="32"
                 className="lg:pr-1 h-8 w-auto"
               />
             </div>{" "}

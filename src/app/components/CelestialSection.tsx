@@ -6,8 +6,9 @@ import Image from "next/image";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import { Target, Mission } from '@prisma/client';
 interface Props {
-  celestials: Celestial[];
+  celestials: Array<Target & { missions: Mission[] }>;
 }
 
 const CelestialSection: React.FC<Props> = ({ celestials }) => {
@@ -50,7 +51,7 @@ const CelestialSection: React.FC<Props> = ({ celestials }) => {
               <div className="bg-gray-dark relative mb-3 aspect-square">
                 <Image
                   className="transition-all duration-300 scale-100 delay-200 group-[.swiper-slide-active]:scale-110"
-                  src={celestial.img}
+                  src={celestial.imgUrl}
                   alt={celestial.name}
                   priority={false}
                   unoptimized
@@ -64,10 +65,10 @@ const CelestialSection: React.FC<Props> = ({ celestials }) => {
                     {celestial.name}
                   </p>{" "}
                   <p className="text-gray-light-mid mb-1 text-lg whitespace-nowrap">
-                    Current missions: {celestial.missions.current}
+                    Current missions: {celestial.missions.filter((m) => m.status === 'current').length}
                   </p>{" "}
                   <p className="text-gray-light-mid mb-2 text-lg whitespace-nowrap">
-                    Past missions: {celestial.missions.past}
+                    Past missions: {celestial.missions.filter((m) => m.status === 'past').length}
                   </p>{" "}
                   <div className="explore-text group-hover:opacity-100 group-[.swiper-slide-active]:opacity-100 group-hover:ml-0 group-[.swiper-slide-active]:ml-0 lg:-ml-3 lg:opacity-0 ml-0 transition-all duration-300 ease-in">
                     <span className="text-subtitle text-jpl-red-light flex items-center">

@@ -3,22 +3,16 @@ interface Site {
   title: string;
   url: string;
 }
-interface News {
-  title: string;
-  subject: string;
-  href: string;
-  img: string;
-}
 
-interface Celestial {
+interface Category {
   name: string;
-  missions: {
-    current: number;
-    past: number;
-  }
-  img: string;
+  items: CategoryItem[];
 }
 
+interface CategoryItem {
+  name: string;
+  href: string;
+}
 interface Engage {
   subject: string;
   name: string;

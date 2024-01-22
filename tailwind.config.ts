@@ -21,6 +21,7 @@ const config: Config = {
       },
       colors: {
         "jpl-red": "rgb(227, 25, 55)",
+        "jpl-blue": "rgb(139,203,250)",
         "jpl-red-light": "rgb(231,59,84)",
         "dark-blue": "rgb(0,69,98)",
         "gray-mid-dark": "rgb(111,111,111)"
