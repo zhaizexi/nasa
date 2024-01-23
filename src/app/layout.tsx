@@ -328,7 +328,7 @@ export default async function RootLayout({
           <NavBar />
           <Toolbar id="back-to-top-anchor" className="min-h-0" />
           <main className="-mt-28">{children}</main>
-          <footer className="bg-dark-blue text-white py-8">
+          <footer className="bg-dark-blue text-white">
             <div className="grid grid-cols-12 gap-6 lg:pt-20 container px-4 pt-10 mx-auto">
               <div className="lg:block lg:col-span-9 hidden col-span-12">
                 <div className="grid grid-cols-9 gap-6">

@@ -17,9 +17,9 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import SearchBar from "./SearchBar";
+import SearchBar from "../(home)/components/SearchBar";
 import MenuIcon from "@mui/icons-material/Menu";
-import DropMenu from "./DropMenu";
+import DropMenu from "../(home)/components/DropMenu";
 
 const headerHeight = 158;
 function HideOnScroll(props: { children: React.ReactElement }) {
