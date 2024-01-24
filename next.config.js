@@ -1,4 +1,5 @@
 const withSvgr = require('next-plugin-svgr');
+const withMDX = require('@next/mdx')();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,6 +21,7 @@ const nextConfig = {
     ],
     deviceSizes: [320,768,1440,1600]
   },
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 }
 
-module.exports =withSvgr(nextConfig)
+module.exports =withMDX(withSvgr(nextConfig))

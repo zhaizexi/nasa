@@ -10,7 +10,7 @@ import EngageSection from "./components/EngageSection";
 import logoImg from "@/assets/image/jpl-logo.png";
 import MemberSection from "./components/MemberSection";
 
-import prisma from "../../../lib/prisma";
+import prisma from "@/lib/prisma";
 import { Slide } from "@prisma/client";
 
 interface Props {

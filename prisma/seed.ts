@@ -176,46 +176,74 @@ async function main() {
   //     }
   //   ]
   // })
-  await prisma.target.createMany({
-    data: [
-      {
-        name: "Earth",
-        imgUrl: "/celestial/Earth.webp",
-      },
-      {
-        name: "Mars",
-        imgUrl: "/celestial/Mars.webp",
-      },
-      {
-        name: "Jupiter",
-        imgUrl: "/celestial/Jupiter.webp",
-      },
-      {
-        name: "Europa",
-        imgUrl: "/celestial/Europa.webp",
-      },
-      {
-        name: "Asteroids and Comets",
-        imgUrl: "/celestial/Vesta.webp",
-      },
-      {
-        name: "Saturn",
-        imgUrl: "/celestial/satur.webp",
-      },
-      {
-        name: "Interstellar Space",
-        imgUrl: "/celestial/interstellar.webp",
-      },
-      {
-        name: "Exoplanets",
-        imgUrl: "/celestial/exoplanets.webp",
-      },
-      {
-        name: "Stars and Galaxies",
-        imgUrl: "/celestial/stars.webp",
-      },
-    ]
+  await prisma.target.create({
+    data: {
+      name: "Earth",
+      imgUrl: "/celestial/Earth.webp",
+      missions: {
+        createMany: {
+          data: [
+            {
+              name: "Surface Water and Ocean Topography",
+              abbr: "SWOT",
+              launchDate: new Date('2022-12-16').toISOString(),
+              type: 'Orbiter',
+              status: 'current',
+              href: 'http://swot.jpl.nasa.gov',
+              description: `Designed to make the first-ever global survey of Earth's surface water, the Surface Water and Ocean Topography, or SWOT, satellite will collect detailed measurements of how water bodies on Earth change over time.`,
+              content: `
+              Designed to make the first-ever global survey of Earth's surface water, the Surface Water and Ocean Topography, or SWOT, satellite will collect detailed measurements of how water bodies on Earth change over time. The satellite will survey at least 90% of the globe, studying Earth's lakes, rivers, reservoirs, and ocean at least once every 21 days to improve ocean circulation models, and weather and climate predictions, and to aid in freshwater management around the world.
+
+              One of 15 missions listed in the 2007 National Research Council Decadal Survey as missions that NASA should implement in the coming decade, SWOT has been jointly developed and managed by NASA and the French space agency Centre National d’Études (CNES), with contributions from the Canadian Space Agency and UK Space Agency.              
+              `,
+              instruments: ['Nadir altimeter','KA-band radar interferometer'],
+              relateSite: {
+                "Mission Website":"http://swot.jpl.nasa.gov",
+                "NASA Global Climate Change Website":"http://climate.nasa.gov/",
+              }
+            }
+          ]
+        }
+      }
+    },
   })
+  // await prisma.target.createMany({
+  //   data: [
+      
+  //     {
+  //       name: "Mars",
+  //       imgUrl: "/celestial/Mars.webp",
+  //     },
+  //     {
+  //       name: "Jupiter",
+  //       imgUrl: "/celestial/Jupiter.webp",
+  //     },
+  //     {
+  //       name: "Europa",
+  //       imgUrl: "/celestial/Europa.webp",
+  //     },
+  //     {
+  //       name: "Asteroids and Comets",
+  //       imgUrl: "/celestial/Vesta.webp",
+  //     },
+  //     {
+  //       name: "Saturn",
+  //       imgUrl: "/celestial/satur.webp",
+  //     },
+  //     {
+  //       name: "Interstellar Space",
+  //       imgUrl: "/celestial/interstellar.webp",
+  //     },
+  //     {
+  //       name: "Exoplanets",
+  //       imgUrl: "/celestial/exoplanets.webp",
+  //     },
+  //     {
+  //       name: "Stars and Galaxies",
+  //       imgUrl: "/celestial/stars.webp",
+  //     },
+  //   ]
+  // })
   
 }
 

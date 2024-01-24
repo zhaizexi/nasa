@@ -18,7 +18,7 @@ import { Box, Container, Fab, Toolbar } from "@mui/material";
 import classNames from "classnames";
 import ScrollTop from "./components/ScrollTop";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import MediaBar from "./components/MediaBar";
+import MediaBar from "@/components/MediaBar";
 
 const roboto = Roboto({
   subsets: ["latin"],

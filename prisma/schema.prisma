@@ -51,12 +51,32 @@ enum MissionStatus {
   proposed
 }
 
+enum MissionType {
+  Orbiter
+  Instrument
+  FlybySpacecraft
+  LanderRover
+  TechnologyDemonstration
+  CubeSatSmallSat
+  Groundbased
+  Lander
+  Rover
+  Airborne
+  Infrastructure
+}
+
 model Mission {
   id          String        @id @default(uuid())
   name        String        @unique
+  abbr        String?
+  href        String?
   description String?
+  content     String
   launchDate  DateTime      @db.Date
   targetId    String
   target      Target?       @relation(fields: [targetId], references: [id])
   status      MissionStatus @default(current)
+  type        MissionType
+  relateSite  Json?     
+  instruments String[]      @default([])
 }
