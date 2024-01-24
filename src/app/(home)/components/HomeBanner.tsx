@@ -30,7 +30,6 @@ const HomeBanner: React.FC<{slides: Slide[];}> = ({slides}) => {
     
     // You can handle player events here, for example:
     player.on("ready", () => {
-      console.log('ready');
       setActiveIndex(0);
     });
     player.on("waiting", () => {

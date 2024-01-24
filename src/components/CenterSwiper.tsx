@@ -6,15 +6,39 @@ import {} from "swiper/modules";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import { SwiperOptions } from "swiper/types";
 
-interface Props<T=any> {
-  title: string
-  items: T[]
-  slideProps?: any
-  renderItem: (item: T) => JSX.Element
+interface Props<T = any> {
+  title: string;
+  items: T[];
+  slideProps?: any;
+  renderItem: (item: T,center: boolean) => JSX.Element;
+  slidesPerView?: number;
+  center?: boolean;
+  breakpoints?: {
+    [width: number]: SwiperOptions;
+  };
 }
 
-export default memo(function CenterSwiper({items,renderItem,title,slideProps}:Props) {
+export default memo(function CenterSwiper({
+  items,
+  renderItem,
+  title,
+  slideProps,
+  slidesPerView=2,
+  center = true,
+  breakpoints = {
+    1440: {
+      slidesPerView: 4,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+  }
+}: Props) {
   const swiperRef = useRef<SwiperRef | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const handleSlideChange = (swiper: SwiperClass) => {
@@ -27,33 +51,23 @@ export default memo(function CenterSwiper({items,renderItem,title,slideProps}:Pr
     swiperRef.current?.swiper.slidePrev();
   };
   return (
-    <div className="relative pt-16 px-4 xl:px-0">
+    <div className={`relative ${title ? "pt-16" : ""} px-4 xl:px-0`}>
       <Swiper
         ref={swiperRef}
-        slidesPerView={2}
+        slidesPerView={slidesPerView}
         spaceBetween={0}
-        centeredSlides={true}
+        centeredSlides={center}
         onSlideChange={handleSlideChange}
-        breakpoints={{
-          1440: {
-            slidesPerView: 4,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
-          768: {
-            slidesPerView: 2,
-          },
-        }}
+        breakpoints={breakpoints}
         modules={[]}
         className="mySwiper"
       >
         {items.map((item) => {
-          return renderItem(item);
+          return renderItem(item,center);
         })}
       </Swiper>
       <div className="absolute top-0 left-0 w-full h-full">
-        <h2 className="absolute top-0 left-4 lg:left-[16.7%] 2xl:left-1/4 z-10 font-primary text-gray-dark lg:text-6xl text-3xl font-semibold leading-normal tracking-normal uppercase">
+        <h2 className={`absolute top-0 ${center ? "left-4 lg:left-[16.7%] 2xl:left-1/4" : ""} z-10 font-primary text-gray-dark lg:text-6xl text-3xl font-semibold leading-normal tracking-normal uppercase`}>
           {title}
         </h2>
         <div className="container mx-auto h-full f-full relative hidden xl:block">
@@ -81,4 +95,4 @@ export default memo(function CenterSwiper({items,renderItem,title,slideProps}:Pr
       </div>
     </div>
   );
-})
+});

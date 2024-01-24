@@ -5,7 +5,7 @@ import CelestialSection from "./components/CelestialSection";
 import labImg from "@/assets/image/lab.jpg";
 import starBgImg from "@/assets/image/bg-stars.jpg";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import EngageSection from "./components/EngageSection";
+import EngageSection from "@/components/EngageSection";
 
 import logoImg from "@/assets/image/jpl-logo.png";
 import MemberSection from "./components/MemberSection";
@@ -579,7 +579,7 @@ export default async function Home(props: Props) {
         </div>
       </section>
       <section className="bg-neutral-100 lg:py-24 lg:mt-24 py-12 mt-12">
-        <EngageSection engages={engages} />
+        <EngageSection items={engages} title="ENGAGE WITH JPL"/>
       </section>
       <section className="max-w-screen-3xl mx-auto justify-items-center flex w-full h-auto lg:h-[600px] relative">
         <Image

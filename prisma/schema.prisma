@@ -17,6 +17,7 @@ model Topic {
   subtitle String
   maskUrl  String?
   news     News[]
+  missions Mission[]
 }
 
 model Slide {
@@ -68,6 +69,7 @@ enum MissionType {
 model Mission {
   id          String        @id @default(uuid())
   name        String        @unique
+  maskUrl     String        @default("")  
   abbr        String?
   href        String?
   description String?
@@ -75,6 +77,8 @@ model Mission {
   launchDate  DateTime      @db.Date
   targetId    String
   target      Target?       @relation(fields: [targetId], references: [id])
+  topicId     String
+  topic       Topic?        @relation(fields: [topicId], references: [id])
   status      MissionStatus @default(current)
   type        MissionType
   relateSite  Json?     

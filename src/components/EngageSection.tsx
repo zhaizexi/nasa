@@ -4,23 +4,31 @@ import { SwiperSlide } from "swiper/react";
 import {} from "swiper/modules";
 import Image from "next/image";
 import CenterSwiper from "@/components/CenterSwiper";
+
+interface Item {
+  subject: string;
+  name: string;
+  img: string;
+}
 interface Props {
-  engages: Engage[];
+  items: Item[];
+  title: string;
+  center?: boolean;
 }
 
-const renderEnage = (engage: Engage) => {
+const renderEnage = (item: Item, center: boolean) => {
   return (
     <SwiperSlide
-      key={engage.name}
-      className="pr-10 group !-translate-x-1/2 select-none"
+      key={item.name}
+      className={`pr-10 group ${center ? "!-translate-x-1/2" : ""} select-none`}
     >
-      <div className="block group-[.swiper-slide-active]:hidden group-[.swiper-slide-next]:hidden absolute left-0 right-10 h-full bg-white/60 z-10"></div>
+      {center && <div className="block group-[.swiper-slide-active]:hidden group-[.swiper-slide-next]:hidden absolute left-0 right-10 h-full bg-white/60 z-10"></div>}
       <div className="group/item cursor-pointer">
         <div className="bg-gray-dark relative overflow-hidden aspect-[490/430]">
           <Image
             className="transition-all duration-300 scale-105 delay-200 group-hover/item:scale-100"
-            src={engage.img}
-            alt={engage.name}
+            src={item.img}
+            alt={item.name}
             priority={false}
             unoptimized
             fill={true}
@@ -29,14 +37,14 @@ const renderEnage = (engage: Engage) => {
             <div className="relative">
               <div className="flex flex-wrap">
                 <p className="text-subtitle divide-gray-mid flex divide-x mb-4">
-                  <span>{engage.subject}</span>{" "}
+                  <span>{item.subject}</span>{" "}
                   <span className="sr-only">.</span>
                 </p>
               </div>{" "}
               <p className="text-gray-dark text-xl font-medium leading-tight tracking-tight lg:text-3xl">
-                {engage.name}
+                {item.name}
               </p>
-              <div className="absolute bottom-0 text-white -translate-x-4 delay-200 opacity-0 group-hover/item:translate-x-0 group-hover/item:opacity-100 text-2xl leading-normal transition duration-300 ">
+              <div className="absolute -bottom-5 text-white -translate-x-4 delay-200 opacity-0 group-hover/item:translate-x-0 group-hover/item:opacity-100 text-2xl leading-normal transition duration-300 ">
                 <svg
                   width="26"
                   height="16"
@@ -61,11 +69,16 @@ const renderEnage = (engage: Engage) => {
   );
 };
 
-export default function EngageSection(props: Props) {
+export default function EngageSection({
+  title,
+  items,
+  center = true,
+}: Props) {
   return (
     <CenterSwiper
-      title="ENGAGE WITH JPL"
-      items={props.engages}
+      center={center}
+      title={title}
+      items={items}
       renderItem={renderEnage}
     />
   );

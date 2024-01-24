@@ -15,7 +15,7 @@ const renderNews= (news:NewsType) => {
   return (
     <SwiperSlide
       key={news.title}
-      className="pr-10 group -translate-x-1/2 select-none"
+      className="pr-10 group select-none translate-x-1"
     >
       <div className="block group-[.swiper-slide-active]:hidden group-[.swiper-slide-next]:hidden absolute w-full h-full bg-white/60 z-10"></div>
       <div className="group/item cursor-pointer">
@@ -24,6 +24,7 @@ const renderNews= (news:NewsType) => {
             className="transition-all duration-300 scale-105 delay-200 group-hover/item:scale-100"
             src={news.maskUrl}
             alt={news.title}
+            priority={false}
             unoptimized
             fill={true}
           />
@@ -31,7 +32,7 @@ const renderNews= (news:NewsType) => {
         <div className="transition-all duration-300 delay-200  group-hover/item:-translate-y-5">
           <div className="flex flex-wrap">
             <p className="text-subtitle divide-gray-mid flex divide-x mb-4">
-              <span>{news.topic?.title}</span> <span className="sr-only">.</span>
+              <span>NEWS</span> <span className="sr-only">.</span>
             </p>
           </div>{" "}
           <p className="text-gray-dark text-xl font-medium leading-tight tracking-tight lg:text-3xl">
@@ -63,6 +64,6 @@ const renderNews= (news:NewsType) => {
 export default function NewsSection(props: Props) {
   
   return (
-    <CenterSwiper title="LATEST NEWS" items={props.news} renderItem={renderNews} />
+    <CenterSwiper title="" items={props.news} renderItem={renderNews} center={false}  />
   );
 }
