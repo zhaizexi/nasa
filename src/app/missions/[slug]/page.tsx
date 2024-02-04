@@ -22,8 +22,21 @@ export default async function MissionPage({
       name: slug,
     },
     include: {
-      target: true,
-      topic: true,
+      targets: {
+        select: {
+          target: true
+        }
+      },
+      topics: {
+        select: {
+          topic: true,
+        }
+      },
+      types: {
+        select: {
+          type: true,
+        },
+      }
     },
   });
   if (mission === null) {
@@ -32,7 +45,9 @@ export default async function MissionPage({
   return (
     <>
       <div className="max-w-screen-3xl relative mx-auto bg-black">
-        <div className="w-full h-full absolute before:absolute before:top-1/2 before:inset-0 before:bg-gradient-to-t before:from-black before:to-transparent">
+        <div className="w-full h-full absolute ">
+          <div className="absolute top-1/2 inset-0 bg-gradient-to-t from-black to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent"></div>
           <Image
             src={mission.maskUrl}
             width={1023}
@@ -84,11 +99,11 @@ export default async function MissionPage({
             </div>
             <div className="lg:col-span-2 col-span-5">
               <p className="text-jpl-red text-subtitle mb-3">Type</p>
-              {mission.type}
+              {mission.types.map(type=> type.type.name).join(',')}
             </div>
             <div className="lg:col-span-2 col-span-5">
               <p className="text-jpl-red text-subtitle mb-3">Target</p>
-              {mission.target?.name}
+              {mission.targets.map(target=> target.target.name).join(',')}
             </div>
             <div className="lg:col-span-2 col-span-5">
               <p className="text-jpl-red text-subtitle mb-3">Status</p>
@@ -122,10 +137,12 @@ export default async function MissionPage({
         )}
         <div className="col-start-2 col-end-13 lg:mt-24 mt-18 lg:mb-18 mb-10">
           <h2 className="font-primary text-gray-dark lg:text-6xl text-3xl font-semibold leading-normal tracking-normal uppercase mb-6">
-            More about {mission.topic?.name}
+            More about {
+              mission.topics.map((topic) => topic.topic.name).join(", ")  
+            }
           </h2>
           <Suspense fallback={<LoadingItems />}>
-            <RelatedItems topicId={mission.topicId} />
+            <RelatedItems topicId={mission.topics[0].topic.id} />
           </Suspense>
         </div>
         {mission.relateSite && (
@@ -150,7 +167,7 @@ export default async function MissionPage({
         <div className="container mx-auto px-4 grid grid-cols-12 gap-6">
           <div className="col-start-2 col-end-13">
             <Suspense fallback={<LoadingItems />}>
-              <RelatedMissions targetId={mission.targetId} />
+              <RelatedMissions targetId={mission.targets[0].target.id} />
             </Suspense>
           </div>
         </div>

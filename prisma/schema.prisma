@@ -11,13 +11,13 @@ datasource db {
 }
 
 model Topic {
-  id       String  @id @default(uuid())
-  name     String  @unique
-  title    String  @unique
+  id       String           @id @default(uuid())
+  name     String           @unique
+  title    String           @unique
   subtitle String
   maskUrl  String?
   news     News[]
-  missions Mission[]
+  missions TopicOnMission[]
 }
 
 model Slide {
@@ -39,10 +39,10 @@ model News {
 
 model Target {
   id        String    @id @default(uuid())
-  name      String
+  name      String    @unique
   imgUrl    String
   indisplay Boolean   @default(true)
-  missions  Mission[]
+  missions  TargetonMission[]
 }
 
 enum MissionStatus {
@@ -52,35 +52,51 @@ enum MissionStatus {
   proposed
 }
 
-enum MissionType {
-  Orbiter
-  Instrument
-  FlybySpacecraft
-  LanderRover
-  TechnologyDemonstration
-  CubeSatSmallSat
-  Groundbased
-  Lander
-  Rover
-  Airborne
-  Infrastructure
+model TypeOnMission {
+  mission   Mission     @relation(fields: [missionId], references: [id])
+  missionId String // relation scalar field (used in the `@relation` attribute above)
+  type      MissionType @relation(fields: [typeId], references: [id])
+  typeId    String // relation scalar field (used in the `@relation` attribute above)
+
+  @@id([missionId, typeId])
+}
+
+model TopicOnMission {
+  mission   Mission @relation(fields: [missionId], references: [id])
+  missionId String // relation scalar field (used in the `@relation` attribute above)
+  topic     Topic   @relation(fields: [topicId], references: [id])
+  topicId   String // relation scalar field (used in the `@relation` attribute above)
+
+  @@id([missionId, topicId])
+}
+
+model MissionType {
+  id       String          @id @default(uuid())
+  name     String          @unique
+  missions TypeOnMission[]
+}
+model TargetonMission {
+  mission   Mission @relation(fields: [missionId], references: [id])
+  missionId String // relation scalar field (used in the `@relation` attribute above)
+  target    Target   @relation(fields: [targetId], references: [id])
+  targetId   String // relation scalar field (used in the `@relation` attribute above)
+
+  @@id([missionId, targetId])
 }
 
 model Mission {
-  id          String        @id @default(uuid())
-  name        String        @unique
-  maskUrl     String        @default("")  
+  id          String           @id @default(uuid())
+  name        String           @unique
+  maskUrl     String           @default("")
   abbr        String?
   href        String?
   description String?
   content     String
-  launchDate  DateTime      @db.Date
-  targetId    String
-  target      Target?       @relation(fields: [targetId], references: [id])
-  topicId     String
-  topic       Topic?        @relation(fields: [topicId], references: [id])
-  status      MissionStatus @default(current)
-  type        MissionType
-  relateSite  Json?     
-  instruments String[]      @default([])
+  launchDate  DateTime         @db.Date
+  status      MissionStatus    @default(current)
+  types       TypeOnMission[]
+  topics      TopicOnMission[]
+  targets     TargetonMission[]
+  relateSite  Json?
+  instruments String[]         @default([])
 }

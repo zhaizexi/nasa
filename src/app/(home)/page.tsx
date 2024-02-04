@@ -31,8 +31,15 @@ async function getPageData() {
   });
   const getTargets = prisma.target.findMany({
     take: 9,
+    where: {
+      indisplay: true
+    },
     include: {
-      missions: true,
+      missions: {
+        select: {
+          mission: true
+        }
+      }
     },
   });
   const [slides, news, celestials] = await Promise.all([getSlides, getNews,getTargets]);

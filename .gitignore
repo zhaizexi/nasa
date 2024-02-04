@@ -37,3 +37,7 @@ next-env.d.ts
 
 # postgres
 /postgres
+
+# 爬虫数据
+/crawler/images
+/crawler/mission

@@ -8,7 +8,11 @@ import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeft
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import { Target, Mission } from '@prisma/client';
 interface Props {
-  celestials: Array<Target & { missions: Mission[] }>;
+  celestials: Array<Target & {
+    missions: {
+        mission: Mission;
+    }[];
+}>;
 }
 
 const CelestialSection: React.FC<Props> = ({ celestials }) => {
@@ -65,10 +69,10 @@ const CelestialSection: React.FC<Props> = ({ celestials }) => {
                     {celestial.name}
                   </p>{" "}
                   <p className="text-gray-light-mid mb-1 text-lg whitespace-nowrap">
-                    Current missions: {celestial.missions.filter((m) => m.status === 'current').length}
+                    Current missions: {celestial.missions.filter(m => m.mission.status === 'current').length}
                   </p>{" "}
                   <p className="text-gray-light-mid mb-2 text-lg whitespace-nowrap">
-                    Past missions: {celestial.missions.filter((m) => m.status === 'past').length}
+                    Past missions: {celestial.missions.filter(m => m.mission.status === 'past').length}
                   </p>{" "}
                   <div className="explore-text group-hover:opacity-100 group-[.swiper-slide-active]:opacity-100 group-hover:ml-0 group-[.swiper-slide-active]:ml-0 lg:-ml-3 lg:opacity-0 ml-0 transition-all duration-300 ease-in">
                     <span className="text-subtitle text-jpl-red-light flex items-center">
